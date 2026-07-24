@@ -13,7 +13,6 @@
 #include "../../protocols/kia_v0.h"
 #include "../../protocols/kia_v3_v4.h"
 #include "../../protocols/kia_v7.h"
-#include "../../helpers/protopirate_storage.h"
 #include "../../protocols/psa.h"
 #include "../../protocols/renault_v0.h"
 
@@ -957,9 +956,6 @@ static bool emulate_input_callback(InputEvent* event, void* context) {
                 ctx->current_counter++;
             }
             emulate_update_data(ctx, button);
-            // Persist counter to SD so it rolls across sessions
-            protopirate_storage_save_capture_to_path(
-                ctx->flipper_format, furi_string_get_cstr(app->loaded_file_path));
         }
 
         ctx->is_transmitting = true;
