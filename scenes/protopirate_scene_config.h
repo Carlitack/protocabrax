@@ -8,6 +8,7 @@ ADD_SCENE(protopirate, sub_decode, SubDecode)
 #endif
 ADD_SCENE(protopirate, about, About)
 ADD_SCENE(protopirate, protocol_help, ProtocolHelp)
+ADD_SCENE(protopirate, export_csv, ExportCsv)
 ADD_SCENE(protopirate, receiver, Receiver)
 ADD_SCENE(protopirate, receiver_config, ReceiverConfig)
 ADD_SCENE(protopirate, receiver_info, ReceiverInfo)

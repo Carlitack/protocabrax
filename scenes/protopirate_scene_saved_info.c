@@ -20,6 +20,9 @@ static void protopirate_scene_saved_info_widget_callback(
                 app->view_dispatcher, ProtoPirateCustomEventSavedInfoEmulate);
         }
 #endif
+    } else if(result == GuiButtonTypeCenter && (type == InputTypeShort)) {
+        view_dispatcher_send_custom_event(
+            app->view_dispatcher, ProtoPirateCustomEventReceiverInfoSave);
     } else if(result == GuiButtonTypeRight && (type == InputTypeShort)) {
         //Send delete event and get user confirmation to delete.
         view_dispatcher_send_custom_event(
@@ -228,6 +231,12 @@ cleanup:
             "Delete",
             protopirate_scene_saved_info_widget_callback,
             app);
+        widget_add_button_element(
+            app->widget,
+            GuiButtonTypeCenter,
+            "CSV",
+            protopirate_scene_saved_info_widget_callback,
+            app);
     }
 
     // Free strings
@@ -282,6 +291,11 @@ bool protopirate_scene_saved_info_on_event(void* context, SceneManagerEvent even
             consumed = true;
         }
 #endif
+        if(event.event == ProtoPirateCustomEventReceiverInfoSave) {
+            FURI_LOG_I(TAG, "Export CSV requested");
+            scene_manager_next_scene(app->scene_manager, ProtoPirateSceneExportCsv);
+            consumed = true;
+        }
     }
 
     return consumed;

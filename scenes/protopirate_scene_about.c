@@ -56,6 +56,10 @@ static const char* credits[] = {
     "Slackware",
     "Trikk",
     // can add more
+    "",
+    "-= FlipperFAP =-",
+    "Compiled online at",
+    "joelewis012.github.io",
 };
 
 #define CREDITS_COUNT (sizeof(credits) / sizeof(credits[0]))
