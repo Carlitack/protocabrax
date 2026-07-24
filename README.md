@@ -24,8 +24,8 @@
 **ProtoPirate** est un toolkit expérimental d'analyse et de décodage de rolling
 codes pour Flipper Zero, développé par **The Pirates' Plunder**.
 
-> ⚠️ **Réception seule par défaut** – L'émission est désactivée par défaut
-> pour éviter toute désynchronisation accidentelle. Active-la dans **Settings**.
+> ✅ **Émission activée par défaut** – Tu peux émettre directement depuis
+> l'app. Désactive-la dans **Settings** si besoin.
 
 ## 🚗 Protocoles supportés
 
