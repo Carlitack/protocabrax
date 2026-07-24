@@ -956,6 +956,11 @@ static bool emulate_input_callback(InputEvent* event, void* context) {
                 ctx->current_counter++;
             }
             emulate_update_data(ctx, button);
+            // Persist counter to SD via host API
+            if(g_host_api && g_host_api->save_capture_to_path && app->loaded_file_path) {
+                g_host_api->save_capture_to_path(
+                    ctx->flipper_format, furi_string_get_cstr(app->loaded_file_path));
+            }
         }
 
         ctx->is_transmitting = true;

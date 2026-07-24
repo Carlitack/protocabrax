@@ -57,6 +57,10 @@ static void host_storage_delete_temp(void) {
     protopirate_storage_delete_temp();
 }
 
+static bool host_save_capture_to_path(void* flipper_format, const char* path) {
+    return protopirate_storage_save_capture_to_path((FlipperFormat*)flipper_format, path);
+}
+
 static void protopirate_emulate_apply_pending_nav(ProtoPirateApp* app) {
     furi_check(app);
 
@@ -84,6 +88,7 @@ static const ProtoPirateEmulateHostApi protopirate_emulate_host_api = {
     .idle = host_idle,
     .history_release_scratch = host_history_release_scratch,
     .storage_delete_temp = host_storage_delete_temp,
+    .save_capture_to_path = host_save_capture_to_path,
 };
 
 // -----------------------------------------------------------------------------

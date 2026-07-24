@@ -24,6 +24,7 @@ typedef struct {
     void (*idle)(void* app);
     void (*history_release_scratch)(void* app);
     void (*storage_delete_temp)(void);
+    bool (*save_capture_to_path)(void* flipper_format, const char* path);
 } ProtoPirateEmulateHostApi;
 
 typedef struct {
