@@ -17,6 +17,7 @@ typedef enum {
     SubmenuIndexProtoPirateTimingTuner,
 #endif
     SubmenuIndexProtoPirateAbout,
+    SubmenuIndexProtoPirateProtocolHelp,
 } SubmenuIndex;
 
 static void protopirate_scene_start_submenu_callback(void* context, uint32_t index) {
@@ -75,6 +76,13 @@ void protopirate_scene_start_on_enter(void* context) {
         protopirate_scene_start_submenu_callback,
         app);
 
+    submenu_add_item(
+        app->submenu,
+        "Protocols Help",
+        SubmenuIndexProtoPirateProtocolHelp,
+        protopirate_scene_start_submenu_callback,
+        app);
+
     submenu_set_selected_item(
         app->submenu, scene_manager_get_scene_state(app->scene_manager, ProtoPirateSceneStart));
 
@@ -112,6 +120,10 @@ bool protopirate_scene_start_on_event(void* context, SceneManagerEvent event) {
             consumed = true;
         }
 #endif
+        else if(event.event == SubmenuIndexProtoPirateProtocolHelp) {
+            scene_manager_next_scene(app->scene_manager, ProtoPirateSceneProtocolHelp);
+            consumed = true;
+        }
         scene_manager_set_scene_state(app->scene_manager, ProtoPirateSceneStart, event.event);
     }
 
