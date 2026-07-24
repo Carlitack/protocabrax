@@ -18,7 +18,7 @@ void protopirate_settings_set_defaults(ProtoPirateSettings* settings) {
     settings->tx_power = 0;
     settings->auto_save = false;
     settings->hopping_enabled = false;
-    settings->emulate_feature_enabled = true;
+    settings->emulate_feature_enabled = false;
     settings->check_saved = false;
 }
 
@@ -106,8 +106,8 @@ void protopirate_settings_load(ProtoPirateSettings* settings) {
 #ifdef ENABLE_EMULATE_FEATURE
         uint32_t emulate_temp = 0;
         if(!flipper_format_read_uint32(ff, "EmulateFeature", &emulate_temp, 1)) {
-            FURI_LOG_I(TAG, "EmulateFeature key missing, defaulting to enabled");
-            emulate_temp = 1;
+            FURI_LOG_I(TAG, "EmulateFeature key missing, defaulting to disabled");
+            emulate_temp = 0;
         }
         settings->emulate_feature_enabled = (emulate_temp == 1);
 #endif
