@@ -146,7 +146,9 @@ static const char* help_text =
     "\n"
     "ProtoPirate by The Pirates'\n"
     "Plunder. Fork by Carlitack.\n"
-    "Join: discord.gg/thepirates\n";
+    "Protocabrax v1.0\n"
+    "Compiled with FlipperFAP\n"
+    "joelewis012.github.io\n";
 
 void protopirate_scene_protocol_help_on_enter(void* context) {
     furi_check(context);

@@ -1,7 +1,7 @@
 <div align="center">
   <img src="images/protopirate_10px.png" alt="Icon" width="80" />
   <h1>ProtoPirate</h1>
-  <p><strong>Toolkit d'analyse de rolling codes Sub-GHz pour Flipper Zero</strong></p>
+  <p><strong>Toolkit d'analyse de rolling codes Sub-GHz pour Flipper Zero — v1.0</strong></p>
   <p>
     <a href="https://github.com/Carlitack/protocabrax/actions">
       <img src="https://github.com/Carlitack/protocabrax/actions/workflows/build.yml/badge.svg" alt="Build">
