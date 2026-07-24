@@ -154,6 +154,13 @@ void protopirate_scene_protocol_help_on_enter(void* context) {
     furi_check(context);
     ProtoPirateApp* app = context;
 
+    if(!protopirate_ensure_widget(app)) {
+        FURI_LOG_E(TAG, "Failed to allocate widget");
+        notification_message(app->notifications, &sequence_error);
+        scene_manager_previous_scene(app->scene_manager);
+        return;
+    }
+
     widget_reset(app->widget);
     widget_add_text_scroll_element(app->widget, 0, 0, 128, 64, help_text);
     view_dispatcher_switch_to_view(app->view_dispatcher, ProtoPirateViewWidget);

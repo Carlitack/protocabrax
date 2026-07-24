@@ -9,6 +9,12 @@ void protopirate_scene_export_csv_on_enter(void* context) {
     furi_check(context);
     ProtoPirateApp* app = context;
 
+    if(!protopirate_ensure_widget(app)) {
+        notification_message(app->notifications, &sequence_error);
+        scene_manager_previous_scene(app->scene_manager);
+        return;
+    }
+
     FuriString* csv = furi_string_alloc();
     FuriString* text = furi_string_alloc();
     uint32_t temp_u32 = 0;
