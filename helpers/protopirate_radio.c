@@ -145,13 +145,7 @@ bool protopirate_radio_init(ProtoPirateApp* app) {
         return false;
     }
 
-    const char* device_name = subghz_devices_get_name(app->txrx->radio_device);
-    bool is_external = device_name && strstr(device_name, "ext");
-    FURI_LOG_I(
-        TAG,
-        "Radio device initialized: %s (%s)",
-        device_name ? device_name : "unknown",
-        is_external ? "external" : "internal");
+    FURI_LOG_I(TAG, "Radio device initialized");
 
     subghz_devices_reset(app->txrx->radio_device);
     subghz_devices_idle(app->txrx->radio_device);
