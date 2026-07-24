@@ -280,7 +280,7 @@ static void vag_parse_data(SubGhzProtocolDecoderVAG* instance) {
     key1_bytes[6] = (uint8_t)(key1_low >> 8);
     key1_bytes[7] = (uint8_t)(key1_low);
 
-#ifndef REMOVE_LOGS
+#if 0
     uint8_t type_byte = key1_bytes[0];
 #endif
     uint8_t block[8];
@@ -1128,7 +1128,7 @@ static void vag_encoder_build_type1(SubGhzProtocolEncoderVAG* instance) {
     FURI_LOG_D(TAG, "Preamble: %zu pulses (220 cycles + 2 sync)", index);
 
     uint16_t prefix = 0xAF3F;
-#ifndef REMOVE_LOGS
+#if 0
     size_t prefix_start = index;
 #endif
     for(int i = 15; i >= 0; i--) {
@@ -1147,7 +1147,7 @@ static void vag_encoder_build_type1(SubGhzProtocolEncoderVAG* instance) {
         (unsigned long)(key1_inv >> 32),
         (unsigned long)(key1_inv & 0xFFFFFFFF));
 
-#ifndef REMOVE_LOGS
+#if 0
     size_t key1_start = index;
 #endif
     for(int i = 63; i >= 0; i--) {
@@ -1159,7 +1159,7 @@ static void vag_encoder_build_type1(SubGhzProtocolEncoderVAG* instance) {
     uint16_t key2 = (uint16_t)(instance->key2_low & 0xFFFF);
     uint16_t key2_inv = ~key2;
     FURI_LOG_D(TAG, "Key2: %04X -> inverted: %04X", key2, key2_inv);
-#ifndef REMOVE_LOGS
+#if 0
     size_t key2_start = index;
 #endif
     for(int i = 15; i >= 0; i--) {
@@ -1268,7 +1268,7 @@ static void vag_encoder_build_type2(SubGhzProtocolEncoderVAG* instance) {
     FURI_LOG_D(TAG, "Preamble: %zu pulses (220 cycles + 2 sync)", index);
 
     uint16_t prefix = 0xAF1C;
-#ifndef REMOVE_LOGS
+#if 0
     size_t prefix_start = index;
 #endif
     for(int i = 15; i >= 0; i--) {
@@ -1286,7 +1286,7 @@ static void vag_encoder_build_type2(SubGhzProtocolEncoderVAG* instance) {
         (unsigned long)(key1 & 0xFFFFFFFF),
         (unsigned long)(key1_inv >> 32),
         (unsigned long)(key1_inv & 0xFFFFFFFF));
-#ifndef REMOVE_LOGS
+#if 0
     size_t key1_start = index;
 #endif
     for(int i = 63; i >= 0; i--) {
@@ -1298,7 +1298,7 @@ static void vag_encoder_build_type2(SubGhzProtocolEncoderVAG* instance) {
     uint16_t key2 = (uint16_t)(instance->key2_low & 0xFFFF);
     uint16_t key2_inv = ~key2;
     FURI_LOG_D(TAG, "Key2: %04X -> inverted: %04X", key2, key2_inv);
-#ifndef REMOVE_LOGS
+#if 0
     size_t key2_start = index;
 #endif
     for(int i = 15; i >= 0; i--) {
@@ -1396,7 +1396,7 @@ static void vag_encoder_build_type3_4(SubGhzProtocolEncoderVAG* instance) {
         (unsigned long)(key1 >> 32),
         (unsigned long)(key1 & 0xFFFFFFFF));
     FURI_LOG_D(TAG, "Key2: %04X (NOT inverted for Type 3/4)", key2);
-#ifndef REMOVE_LOGS
+#if 0
     uint8_t key1_byte6 = (key1 >> 8) & 0xFF;
     uint8_t key1_byte7 = key1 & 0xFF;
     FURI_LOG_D(
@@ -1422,7 +1422,7 @@ static void vag_encoder_build_type3_4(SubGhzProtocolEncoderVAG* instance) {
         (key1_byte7 >> 0) & 1);
 #endif
     for(int repeat = 0; repeat < 2; repeat++) {
-#ifndef REMOVE_LOGS
+#if 0
         size_t repeat_start = index;
 #endif
         index = pp_emit_short_pairs(upload, index, cap, 500, 45);
@@ -1433,7 +1433,7 @@ static void vag_encoder_build_type3_4(SubGhzProtocolEncoderVAG* instance) {
         index = pp_emit(upload, index, cap, false, 500);
         index = pp_emit_short_pairs(upload, index, cap, 750, 3);
 
-#ifndef REMOVE_LOGS
+#if 0
         size_t key1_start = index;
 #endif
         for(int i = 63; i >= 0; i--) {
@@ -1443,7 +1443,7 @@ static void vag_encoder_build_type3_4(SubGhzProtocolEncoderVAG* instance) {
         }
         FURI_LOG_D(TAG, "Repeat %d: Key1 %zu pulses (64 bits)", repeat + 1, index - key1_start);
 
-#ifndef REMOVE_LOGS
+#if 0
         size_t key2_start = index;
 #endif
         for(int i = 15; i >= 0; i--) {
@@ -1693,7 +1693,7 @@ SubGhzProtocolStatus
                     "Could not decode original signal - check if keys are loaded and Type is correct");
             }
         }
-#ifndef REMOVE_LOGS
+#if 0
         uint32_t old_cnt = instance->cnt;
 #endif
         instance->cnt = (instance->cnt + 1) & 0xFFFFFF;

@@ -914,7 +914,7 @@ static void kia_protocol_encoder_v6_build_upload(SubGhzProtocolEncoderKiaV6* ins
 
     instance->encoder.size_upload = index;
 
-#ifndef REMOVE_LOGS
+#if 0
     FURI_LOG_I(
         TAG,
         "Encrypted payload (TX): P1=%08lX%08lX P2=%08lX%08lX P3=%04X",

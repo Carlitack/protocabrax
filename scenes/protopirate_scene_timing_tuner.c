@@ -200,7 +200,7 @@ static void calculate_timing_stats(TimingTunerContext* ctx) {
         ctx->long_count);
 
     if(ctx->timing_info && ctx->short_count > 0 && ctx->long_count > 0) {
-#ifndef REMOVE_LOGS
+#if 0
         int32_t short_diff = ctx->avg_short - (int32_t)ctx->timing_info->te_short;
         int32_t long_diff = ctx->avg_long - (int32_t)ctx->timing_info->te_long;
         FURI_LOG_I(

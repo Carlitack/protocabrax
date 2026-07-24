@@ -427,9 +427,15 @@ void subghz_protocol_decoder_star_line_reset(void* context) {
     furi_check(context);
     SubGhzProtocolDecoderStarLine* instance = context;
     instance->decoder.parser_step = StarLineDecoderStepReset;
-    // TODO
-    instance->keystore->mfname = "";
-    instance->keystore->kl_type = 0;
+    // Reset keystore references on each new capture attempt
+    if(instance->keystore) {
+        instance->keystore->mfname = "";
+        instance->keystore->kl_type = 0;
+    }
+    // Reset manufacture_from_file so stale names don't persist across signals
+    if(instance->manufacture_from_file) {
+        furi_string_set_str(instance->manufacture_from_file, "");
+    }
 }
 
 void subghz_protocol_decoder_star_line_feed(void* context, bool level, uint32_t duration) {
@@ -569,10 +575,10 @@ static uint8_t subghz_protocol_star_line_check_remote_controller_selector(
     uint32_t decrypt = 0;
     uint64_t man_normal_learning;
     bool mf_not_set = false;
-    // TODO:
-    // if(mfname == 0x0) {
-    //     mfname = "";
-    // }
+    // Guard against null mfname — protects the strcmp below
+    if(keystore->mfname == NULL) {
+        keystore->mfname = "";
+    }
 
     const char* mfname = keystore->mfname;
 

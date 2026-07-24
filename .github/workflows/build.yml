@@ -1,0 +1,57 @@
+name: "Protocabrax FAP Build"
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-ofw-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: flipperdevices/flipperzero-ufbt-action@v0.1.2
+        with:
+          sdk-channel: release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: protopirate_ofw_release
+          path: dist/*.fap
+
+  build-ofw-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: flipperdevices/flipperzero-ufbt-action@v0.1.2
+        with:
+          sdk-channel: dev
+      - uses: actions/upload-artifact@v4
+        with:
+          name: protopirate_ofw_dev
+          path: dist/*.fap
+
+  build-unleashed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: flipperdevices/flipperzero-ufbt-action@v0.1.2
+        with:
+          sdk-channel: release
+          sdk-index-url: https://up.unleashedflip.com/directory.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: protopirate_unleashed
+          path: dist/*.fap
+
+  build-momentum:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: flipperdevices/flipperzero-ufbt-action@v0.1.2
+        with:
+          sdk-channel: release
+          sdk-index-url: https://up.momentum-fw.dev/firmware/directory.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: protopirate_momentum
+          path: dist/*.fap

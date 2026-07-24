@@ -1,6 +1,6 @@
 #pragma once
 
-// #define ENABLE_TIMING_TUNER_SCENE
+#define ENABLE_TIMING_TUNER_SCENE
 #define ENABLE_SUB_DECODE_SCENE
 #define ENABLE_EMULATE_FEATURE
 
@@ -16,20 +16,18 @@
 #define PROTOPIRATE_WITH_DECODER 0
 #endif
 
-#define REMOVE_LOGS
+// Log level: comment out levels you want to see.
+// E=errors, W=warnings, I=info, D=debug, T=trace
+// Production: keep E, W enabled. Development: enable I, D as needed.
+#define PP_LOG_QUIET
 
-#ifdef REMOVE_LOGS
-// Undefine existing macros
-#undef FURI_LOG_E
-#undef FURI_LOG_W
+#ifdef PP_LOG_QUIET
+// Disable verbose logs (I, D, T) but keep errors and warnings
 #undef FURI_LOG_I
 #undef FURI_LOG_D
 #undef FURI_LOG_T
-// Define empty macros
-#define FURI_LOG_E(tag, format, ...)
-#define FURI_LOG_W(tag, format, ...)
 #define FURI_LOG_I(tag, format, ...)
 #define FURI_LOG_D(tag, format, ...)
 #define FURI_LOG_T(tag, format, ...)
-
-#endif // REMOVE_LOGS
+// FURI_LOG_E and FURI_LOG_W remain active
+#endif // PP_LOG_QUIET

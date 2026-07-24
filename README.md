@@ -1,134 +1,64 @@
-# **ProtoPirate**
+<div align="center">
+  <img src="images/protopirate_10px.png" alt="Icon" width="80" />
+  <h1>ProtoPirate</h1>
+  <p><strong>Toolkit d'analyse de rolling codes Sub-GHz pour Flipper Zero</strong></p>
+  <p>
+    <a href="https://github.com/Carlitack/protopirate/actions">
+      <img src="https://github.com/Carlitack/protopirate/actions/workflows/build.yml/badge.svg" alt="Build">
+    </a>
+    <a href="https://joelewis012.github.io/flipper-fap-actions/">
+      <img src="https://img.shields.io/badge/FlipperFAP-Ready-FF4400" alt="FlipperFAP">
+    </a>
+    <img src="https://img.shields.io/badge/Flipper_Zero-FAP-blue" alt="Flipper Zero">
+  </p>
+  <p>
+    <strong>Fork amélioré par <a href="https://github.com/Carlitack">Carlitack</a></strong> —
+    <a href="#-protocoles-supportés">Protocoles</a> •
+    <a href="#-ameliorations">Améliorations</a> •
+    <a href="#-compilation">Compilation</a>
+  </p>
+</div>
 
-### _for Flipper Zero_
+---
 
-## **⚠️ Warning: Important Security & Project Update**
-Read message by following link below:
+**ProtoPirate** est un toolkit expérimental d'analyse et de décodage de rolling
+codes pour Flipper Zero, développé par **The Pirates' Plunder**.
 
-https://protopirate.net/ProtoPirate
+> ⚠️ **Réception seule par défaut** – L'émission est désactivée par défaut
+> pour éviter toute désynchronisation accidentelle. Active-la dans **Settings**.
 
-Main repo is located at: https://protopirate.net/ProtoPirate/ProtoPirate 
+## 🚗 Protocoles supportés
 
-All others are read only mirrors!
+### AM
+Chrysler V0, Fiat V0/V1/V2, Ford V0/V3, Honda V1, Kia V1/V2, Mazda V0,
+Porsche Touareg, PSA (Peugeot/Citroën), Renault V0, StarLine, Subaru, VAG
 
+### FM
+Ford V1/V2/V3, Honda Static/V1/V2, Kia V0/V2/V3-V4/V5/V6/V7, Mazda V0,
+Mitsubishi V0, PSA, Scher-Khan
 
-ProtoPirate is an experimental rolling-code analysis toolkit developed by members of **The Pirates' Plunder**.
+## ✨ Améliorations (vs original)
 
-The app currently supports decoding for multiple automotive key-fob families (Kia, Ford, Subaru, Suzuki, VW, and more), with the goal of being a drop-in Flipper app (.fap) that is free, open source, and can be used on any Flipper Zero firmware. 
+| Feature | Statut |
+|---|---|
+| Timing Tuner débloqué | ✅ |
+| Logging réparé (erreurs visibles) | ✅ |
+| Dead code nettoyé | ✅ |
+| AUT64 validations + pack activés | ✅ |
+| KeeLoq Secure (type 3) + FAAC (type 5) | ✅ Ajoutés |
+| TX activé par défaut | ✅ |
+| StarLine TODOs fixés | ✅ |
+| CI GitHub Actions (4 cibles) | ✅ |
+| Tests KeeLoq 14/14 + AUT64 16/20 | ✅ |
 
-App is intended for educational and security purposes only, and has no signal transmission enabled by default. This prevents users from accidentally desyncing their keyfobs, making it safe for non-specialists.
+## 🔧 Compilation
 
-## **Supported Protocols**
+**FlipperFAP** → `https://github.com/Carlitack/protopirate`
 
-Protocols are split into **AM** and **FM** registries. The active registry is chosen from the receiver selected preset.
+**GitHub Actions** → Push sur main, artifacts dans l'onglet Actions
 
-### **AM protocols**
+**Local** → `pip install ufbt && ufbt`
 
+## 📝 Licence
 
-| Protocol                 | Decoder | Encoder | Signal Encoding | Modulation | Encryption                     | CRC          | Frequency       |
-| ------------------------ | ------- | ------- | --------------- | ---------- | ------------------------------ | ------------ | --------------- |
-| Chrysler V0              | ✅       | ✅       | PWM             | AM650      | Rolling Code                   | Checksum     | 315.00 / 433.92 |
-| Fiat V0                  | ✅       | ✅       | Manchester      | AM650      | Rolling Code (static emu only) | ❌            | 315.00 / 433.92 |
-| Fiat V1                  | ✅       | ✅       | Manchester      | AM650      | HITAG2                  | XOR8         | 315.00 / 433.92 |
-| Fiat V2                  | ✅       | ❌       | Manchester      | AM650      | Rolling Code                   | ❌            | 315.00 / 433.92 |
-| Ford V0                  | ✅       | ✅       | Manchester      | AM650      | Rolling Code                   | ✅ + Checksum | 315.00 / 433.92 |
-| Ford V3                  | ✅       | ❌       | Manchester      | AM650      | Rolling Code                   | ❌            | 434.25          |
-| Honda V1                 | ✅       | ✅       | Manchester      | AM650      | Rolling Code                   | CRC4         | 315.00 / 433.92 |
-| Kia V1                   | ✅       | ✅       | Manchester      | AM650      | Rolling Code                   | CRC4         | 315.00 / 433.92 |
-| Mazda V0                 | ✅       | ✅       | Manchester      | AM650      | Rolling Code                   | Checksum     | 315.00 / 433.92 |
-| Porsche Touareg          | ✅       | ❌       | PWM             | AM650      | Rolling Code                   | ❌            | 315.00 / 433.92 |
-| PSA (Peugeot/Citroen)    | ✅       | ✅       | Manchester      | AM650      | XTEA/XOR                       | CRC8         | 315.00 / 433.92 |
-| Renault V0               | ✅       | ✅       | Manchester      | AM650      | Rolling Code / Replay          | Type/IC      | 315.00 / 433.92 |
-| StarLine                 | ✅       | ✅       | PWM             | AM650      | KeeLoq                         | ❌            | 315.00 / 433.92 |
-| Subaru                   | ✅       | ✅       | PPM             | AM650      | Rolling Code                   | ❌            | 315.00 / 433.92 |
-| VAG (VW/Audi/Seat/Skoda) | ✅       | ✅       | Manchester      | AM650      | AUT64/XTEA                     | ❌            | 434.42          |
-
-
-### **FM protocols**
-
-
-| Protocol                      | Decoder | Encoder | Signal Encoding | Modulation | Encryption                   | CRC        | Frequency       |
-| ----------------------------- | ------- | ------- | --------------- | ---------- | ---------------------------- | ---------- | --------------- |
-| Ford V1                       | ✅       | ✅       | Manchester      | F4         | Rolling Code                 | CRC16      | 315.00 / 433.92 |
-| Ford V2                       | ✅       | ✅       | Manchester      | F4         | Rolling Code (simple replay) | ❌          | 434.25          |
-| Ford V3                       | ✅       | ❌       | Manchester      | F4         | Rolling Code                 | ❌          | 434.25          |
-| Honda Static                  | ✅       | ✅       | PWM             | Honda1     | Static Code                  | Checksum   | 315.00 / 433.92 |
-| Kia V0 / Suzuki V0 / Honda V0 | ✅       | ✅       | PWM             | FM476      | Rolling Code                 | CRC8       | 315.00 / 433.92 |
-| Kia V2                        | ✅       | ✅       | Manchester      | FM476      | Rolling Code                 | CRC4       | 315.00 / 433.92 |
-| Kia V3 / V4                   | ✅       | ✅       | PWM             | FM476      | KeeLoq                       | CRC4 (BF)  | 315.00 / 433.92 |
-| Kia V5                        | ✅       | ✅       | PWM             | FM476      | Rolling Code                 | ✅          | 315.00 / 433.92 |
-| Kia V6                        | ✅       | ✅       | Manchester      | FM476      | AES128                       | CRC8       | 315.00 / 433.92 |
-| Kia V7                        | ✅       | ✅       | Manchester      | FM476      | Rolling Code                 | CRC8       | 315.00 / 433.92 |
-| Honda V2                      | ✅       | ✅       | PWM             | F4         | Rolling Code                 | Check+Tail | 315.00 / 433.92 |
-| Mazda V0                      | ✅       | ✅       | Manchester      | FM (F2?)   | Rolling Code                 | Checksum   | 315.00 / 433.92 |
-| Mitsubishi V0                 | ✅       | ❌       | PWM             | FM476      | Rolling Code                 | ❌          | 315.00 / 433.92 |
-| PSA (Peugeot/Citroen)         | ✅       | ✅       | Manchester      | FM (F3?)   | XTEA/XOR                     | CRC8       | 315.00 / 433.92 |
-| Scher-Khan                    | ✅       | ❌       | PWM             | FM         | Magic Code                   | ❌          | 315.00 / 433.92 |
-
-
-*More Coming Soon*
-
-## **Features**
-
-### 📡 Protocol Receiver
-
-Real-time signal capture and decoding with animated radar display. Supports frequency hopping.
-
-### 📂 Sub Decode
-
-Load and analyze existing `.sub` files from your SD card. Browse `/ext/subghz/` to decode previously captured signals.
-
-### ⏱️ Timing Tuner
-
-Tool for protocol developers to compare real fob signal timing against protocol definitions.
-
-- **Protocol Definition**: Expected short/long pulse durations and tolerance
-- **Received Signal**: Measured timing from real fob (avg, min, max, sample count)
-- **Analysis**: Difference from expected, jitter measurements
-- **Conclusion**: Whether timing matches or needs adjustment with specific recommendations
-
-## **Credits**
-
-The following contributors are recognized for helping us keep open sourced projects and the freeware community alive.
-
-### **App Development**
-
-- RocketGod
-- MMX
-- Leeroy
-- gullradriel
-- Skorp - Thanks, I sneaked a lot from Weather App!
-- Vadim's Radio Driver
-
-### **Protocol Magic**
-
-- L0rdDiakon
-- YougZ
-- RocketGod
-- MMX
-- DoobTheGoober
-- Skorp
-- Slackware
-- Trikk
-- Wootini
-- Li0ard
-- Leeroy
-- Ash
-
-### **Reverse Engineering Support**
-
-- DoobTheGoober
-- MMX
-- NeedNotApply
-- RocketGod
-- Slackware
-- Trikk
-- Li0ard
-
-## **Community & Support**
-
-Join **The Pirates' Plunder** on Discord for development updates, testing, protocol research, community support, and a bunch of badasses doing fun shit:
-
-➡️ **[https://discord.gg/thepirates](https://discord.gg/thepirates)**
-
-<img alt="rocketgod_logo_transparent" src="https://github.com/user-attachments/assets/ad15b106-152c-4a60-a9e2-4d40dfa8f3c6" />
+GPLv3 — original par **The Pirates' Plunder**

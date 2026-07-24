@@ -191,13 +191,13 @@ static void psa_build_buffer_mode23(
     buffer[8] = (uint8_t)(instance->button & 0xF);
 
     uint8_t original_buffer9 = 0;
-#ifndef REMOVE_LOGS
+#if 0
     uint8_t original_buffer8 = 0;
 #endif
     bool has_original_key2 = (instance->key2_low != 0);
     if(has_original_key2) {
         original_buffer9 = (uint8_t)(instance->key2_low & 0xFF);
-#ifndef REMOVE_LOGS
+#if 0
         original_buffer8 = (uint8_t)((instance->key2_low >> 8) & 0xFF);
 #endif
         buffer[9] = original_buffer9;

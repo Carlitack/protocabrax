@@ -4,10 +4,10 @@
 #include <stdbool.h>
 
 // uncomment to activate key validation, index boundary verifications, ...
-//#define AUT64_ENABLE_VALIDATIONS
+#define AUT64_ENABLE_VALIDATIONS
 
 // uncomment to add compilation of aut64_pack (currently unused in the code)
-//#define AUT64_PACK_SUPPORT
+#define AUT64_PACK_SUPPORT
 
 #define AUT64_NUM_ROUNDS      12
 #define AUT64_BLOCK_SIZE      8

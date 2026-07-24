@@ -297,7 +297,7 @@ void protopirate_scene_receiver_on_enter(void* context) {
 
     protopirate_scene_receiver_update_statusbar(app);
 
-#ifndef REMOVE_LOGS
+#if 0
     bool is_external =
         app->txrx->radio_device ? radio_device_loader_is_external(app->txrx->radio_device) : false;
     const char* device_name =
@@ -334,7 +334,7 @@ bool protopirate_scene_receiver_on_event(void* context, SceneManagerEvent event)
     if(event.type == SceneManagerEventTypeCustom) {
         switch(event.event) {
         case ProtoPirateCustomEventReceiverDeferredRxStart:
-#ifndef REMOVE_LOGS
+#if 0
             FURI_LOG_I(TAG, "Deferred RX start (post-emulate path)");
 #endif
             protopirate_scene_receiver_start_rx_stack(app);
@@ -424,7 +424,7 @@ bool protopirate_scene_receiver_on_event(void* context, SceneManagerEvent event)
 
             static uint8_t rssi_log_counter = 0;
             if(++rssi_log_counter >= 50) {
-#ifndef REMOVE_LOGS
+#if 0
                 bool is_external = app->txrx->radio_device ?
                                        radio_device_loader_is_external(app->txrx->radio_device) :
                                        false;
