@@ -3,8 +3,8 @@
   <h1>ProtoPirate</h1>
   <p><strong>Toolkit d'analyse de rolling codes Sub-GHz pour Flipper Zero</strong></p>
   <p>
-    <a href="https://github.com/Carlitack/protopirate/actions">
-      <img src="https://github.com/Carlitack/protopirate/actions/workflows/build.yml/badge.svg" alt="Build">
+    <a href="https://github.com/Carlitack/protocabrax/actions">
+      <img src="https://github.com/Carlitack/protocabrax/actions/workflows/build.yml/badge.svg" alt="Build">
     </a>
     <a href="https://joelewis012.github.io/flipper-fap-actions/">
       <img src="https://img.shields.io/badge/FlipperFAP-Ready-FF4400" alt="FlipperFAP">
@@ -53,7 +53,7 @@ Mitsubishi V0, PSA, Scher-Khan
 
 ## 🔧 Compilation
 
-**FlipperFAP** → `https://github.com/Carlitack/protopirate`
+**FlipperFAP** → `https://github.com/Carlitack/protocabrax`
 
 **GitHub Actions** → Push sur main, artifacts dans l'onglet Actions
 

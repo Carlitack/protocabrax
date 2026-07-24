@@ -15,7 +15,7 @@ jobs:
           sdk-channel: release
       - uses: actions/upload-artifact@v4
         with:
-          name: protopirate_ofw_release
+          name: protocabrax_ofw_release
           path: dist/*.fap
 
   build-ofw-dev:
@@ -27,7 +27,7 @@ jobs:
           sdk-channel: dev
       - uses: actions/upload-artifact@v4
         with:
-          name: protopirate_ofw_dev
+          name: protocabrax_ofw_dev
           path: dist/*.fap
 
   build-unleashed:
@@ -40,7 +40,7 @@ jobs:
           sdk-index-url: https://up.unleashedflip.com/directory.json
       - uses: actions/upload-artifact@v4
         with:
-          name: protopirate_unleashed
+          name: protocabrax_unleashed
           path: dist/*.fap
 
   build-momentum:
@@ -53,5 +53,5 @@ jobs:
           sdk-index-url: https://up.momentum-fw.dev/firmware/directory.json
       - uses: actions/upload-artifact@v4
         with:
-          name: protopirate_momentum
+          name: protocabrax_momentum
           path: dist/*.fap
