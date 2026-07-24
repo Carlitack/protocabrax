@@ -35,7 +35,7 @@ void protopirate_scene_sub_decode_on_exit(void* context) {
 #ifdef PROTOPIRATE_SUB_DECODE_PLUGIN_BUILD
 #include "protopirate_sub_decode_plugin_icons.h"
 #else
-#include "proto_pirate_icons.h"
+#include "protocabrax_icons.h"
 #endif
 
 #define TAG "ProtoPirateSubDecode"

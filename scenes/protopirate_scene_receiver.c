@@ -5,7 +5,7 @@
 #include "views/protopirate_receiver.h"
 #include <notification/notification_messages.h>
 #include <stdio.h>
-#include "proto_pirate_icons.h"
+#include "protocabrax_icons.h"
 
 #define TAG "ProtoPirateSceneRx"
 

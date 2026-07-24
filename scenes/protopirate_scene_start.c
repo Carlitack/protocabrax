@@ -2,7 +2,7 @@
 #include "../protopirate_app_i.h"
 #include "../helpers/protopirate_storage.h"
 
-#include "proto_pirate_icons.h"
+#include "protocabrax_icons.h"
 
 #define TAG "ProtoPirateSceneStart"
 
