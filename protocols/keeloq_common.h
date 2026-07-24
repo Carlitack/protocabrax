@@ -41,9 +41,9 @@ struct SubGhzKeystore {
 #define KEELOQ_LEARNING_UNKNOWN             0u
 #define KEELOQ_LEARNING_SIMPLE              1u
 #define KEELOQ_LEARNING_NORMAL              2u
-// #define KEELOQ_LEARNING_SECURE              3u
+#define KEELOQ_LEARNING_SECURE              3u
 #define KEELOQ_LEARNING_MAGIC_XOR_TYPE_1    4u
-// #define KEELOQ_LEARNING_FAAC                5u
+#define KEELOQ_LEARNING_FAAC                5u
 #define KEELOQ_LEARNING_MAGIC_SERIAL_TYPE_1 6u
 #define KEELOQ_LEARNING_MAGIC_SERIAL_TYPE_2 7u
 #define KEELOQ_LEARNING_MAGIC_SERIAL_TYPE_3 8u
@@ -147,4 +147,22 @@ static inline uint64_t
 static inline uint64_t
     subghz_protocol_keeloq_common_magic_serial_type3_learning(uint32_t data, uint64_t man) {
     return (man & 0xFFFFFFFFFF000000) | (data & 0xFFFFFF);
+}
+
+// Secure Learning (type 3): normal_learning(encrypt(serial, mf_key), mf_key)
+static inline uint64_t
+    subghz_protocol_keeloq_common_secure_learning(uint32_t serial, const uint64_t mf_key) {
+    uint32_t encrypted = subghz_protocol_keeloq_common_encrypt(serial, mf_key);
+    return subghz_protocol_keeloq_common_normal_learning(encrypted & 0x0FFFFFFF, mf_key);
+}
+
+// FAAC Learning (type 5): remap serial bits, then normal learning
+static inline uint64_t
+    subghz_protocol_keeloq_common_faac_learning(uint32_t serial, const uint64_t mf_key) {
+    serial &= 0x0FFFFFFF;
+    uint32_t remapped = ((serial & 0xFF) << 16) |
+                         ((serial >> 8) & 0xFF) |
+                         ((serial >> 16) & 0xFF) << 24;
+    remapped = (remapped & 0x0FFFFFFF) | 0x20000000;
+    return subghz_protocol_keeloq_common_normal_learning(remapped, mf_key);
 }
